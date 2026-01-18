@@ -1,8 +1,10 @@
 from django.db import models
 from .sale import Sale
 from inventory.models import Medicine, Batch
+import uuid
 
 class SaleItem(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='items')
     medicine = models.ForeignKey(Medicine, on_delete=models.PROTECT)
     batch = models.ForeignKey(Batch, on_delete=models.PROTECT)

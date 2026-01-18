@@ -1,8 +1,10 @@
 from django.db import models
 from .medicine import Medicine
 from .wholesaler import Wholesaler
+import uuid
 
 class Batch(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE, related_name='batches')
     wholesaler = models.ForeignKey(Wholesaler, on_delete=models.PROTECT, related_name='batches')
     batch_number = models.CharField(max_length=50)
