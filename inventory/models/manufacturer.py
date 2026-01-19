@@ -8,6 +8,14 @@ class Manufacturer(models.Model):
     contact_info = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    class meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'country'],
+                name='unique_manufacturer'
+            )
+        ]
 
     def __str__(self):
         return self.name
