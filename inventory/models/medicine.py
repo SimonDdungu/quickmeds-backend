@@ -12,8 +12,12 @@ DOSAGE_FORMS = [
 STRENGTH_UNITS = [
     ('mg', 'mg'),
     ('g', 'g'),
-    ('ml', 'ml'),
+    ('µg', 'µg'),
     ('IU', 'IU'),
+    ('ml', 'ml'),
+    ('mg/mL', 'mg/mL'),
+    ('µg/mL', 'µg/mL'),
+    ('IU/mL', 'IU/mL')
 ]
 
 class Medicine(models.Model):
