@@ -24,6 +24,6 @@ class SaleSerializer(serializers.ModelSerializer):
             
             total += each_item["quantity"] * each_item["price"]
             
-        sale.total_amout = total
+        sale.total_amount = total
             
         return sale.save()
