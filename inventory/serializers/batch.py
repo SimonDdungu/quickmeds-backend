@@ -6,6 +6,7 @@ class BatchSerializer(serializers.ModelSerializer):
     class meta:
         model = Batch
         fields = '__all__'
+        read_only_fields = ['created_at', 'updated_at']
         
     def validate_quantity_received(self, value):
         if value <= 0:

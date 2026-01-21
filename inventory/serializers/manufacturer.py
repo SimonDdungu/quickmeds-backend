@@ -5,5 +5,6 @@ class ManufacturerSerializer(serializers.ModelSerializer):
     class meta:
         model = Manufacturer
         fields = '__all__'
+        read_only_fields = ['created_at', 'updated_at']
         
         

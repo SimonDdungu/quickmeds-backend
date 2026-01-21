@@ -5,3 +5,4 @@ class RoleSerializer(serializers.ModelSerializer):
     class meta:
         model = Role
         fields = '__all__'
+        read_only_fields = ['created_at', 'updated_at']
