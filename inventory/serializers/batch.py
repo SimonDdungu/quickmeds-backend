@@ -5,7 +5,7 @@ from inventory.models import Batch
 class BatchSerializer(serializers.ModelSerializer):
     class meta:
         model = Batch
-        field = '__all__'
+        fields = '__all__'
         
     def validate_quantity_received(self, value):
         if value <= 0:

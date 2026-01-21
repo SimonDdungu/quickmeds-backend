@@ -4,4 +4,4 @@ from inventory.models import Medicine
 class MedicineSerializers(serializers.ModelSerializers):
     class meta:
         model = Medicine
-        field = '__all__'
+        fields = '__all__'
