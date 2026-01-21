@@ -3,7 +3,7 @@ from datetime import date
 from inventory.models import Batch
 
 class BatchSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Batch
         fields = '__all__'
         read_only_fields = ['id', 'created_at', 'updated_at']

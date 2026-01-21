@@ -9,7 +9,7 @@ class Wholesaler(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    class meta:
+    class Meta:
         constraints = [
             models.UniqueConstraint(
                 fields=['name', 'country', 'address'],

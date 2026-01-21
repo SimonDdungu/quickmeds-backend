@@ -7,7 +7,7 @@ class SaleSerializer(serializers.ModelSerializer):
     items = SaleItemSerializer(many=True)
     soldby = UserSerializer(read_only=True)  
     
-    class meta:
+    class Meta:
         model = Sale
         fields = "__all__"
         read_only_fields = ["id", "sold_by", "sold_at", "total_amount"]
