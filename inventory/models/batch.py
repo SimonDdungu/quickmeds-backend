@@ -18,12 +18,14 @@ class Batch(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
+        ordering = ['-created_at']
         constraints = [
             models.UniqueConstraint(
                 fields=['medicine', 'wholesaler', 'batch_number'],
                 name='unique_batches_per_medicine'
             )
         ]
+        
 
     def __str__(self):
         return f"{self.medicine.name} - {self.batch_number} expires {self.expiry_date}"

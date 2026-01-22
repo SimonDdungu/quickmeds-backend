@@ -34,6 +34,7 @@ class Medicine(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
+        ordering = ['name', 'generic_name', 'dosage_form', 'strength']
         constraints = [
             models.UniqueConstraint(
                 fields=['name', 'generic_name', 'dosage_form', 'strength', 'strength_unit', 'manufacturer'],

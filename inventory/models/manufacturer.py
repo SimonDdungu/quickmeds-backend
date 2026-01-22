@@ -12,6 +12,7 @@ class Manufacturer(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
+        ordering = ['name', 'country']
         constraints = [
             models.UniqueConstraint(
                 fields=['name', 'country', 'email', 'address'],
