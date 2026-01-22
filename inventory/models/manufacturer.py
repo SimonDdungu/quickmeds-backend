@@ -6,8 +6,8 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=50, blank=True)
     email = models.EmailField(unique=True, blank=True)
-    contact = models.CharField(unique=True, blank=True)
-    address = models.CharField(blank=True)
+    contact = models.CharField(max_length=15, unique=True, blank=True)
+    address = models.CharField(max_length=200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

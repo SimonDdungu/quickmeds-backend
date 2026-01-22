@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from sales.models import SaleItem
-from inventory.serializers import MedicineSerializers, BatchSerializers
+from inventory.serializers import MedicineSerializers, BatchSerializer
 
 class SaleItemSerializer(serializers.ModelSerializer):
     medicine = MedicineSerializers(read_only=True)
-    batch = BatchSerializers(read_only=True)
+    batch = BatchSerializer(read_only=True)
     medicine_id = serializers.UUIDField(write_only=True)
     batch_id = serializers.UUIDField(write_only=True)
     
