@@ -1,1 +1,1 @@
-from countries import *
+from .countries import *

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from rest_framework.router import DefaultRouter
+from rest_framework.routers import DefaultRouter
 from inventory.views import ManufacturerViewSet, BatchViewSet, MedicineViewSet, WholesalerViewSet
 
 router = DefaultRouter()
