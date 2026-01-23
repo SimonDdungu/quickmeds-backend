@@ -6,9 +6,9 @@ from inventory.serializers import ManufacturerSerializer
 from inventory.filters import ManufacturerFilters
 
 class ManufacturerViewSet(viewsets.ModelViewSet):
-    queryset = Manufacturer.objects.all().order_by('name')
+    queryset = Manufacturer.objects.all()
     serializer_class = ManufacturerSerializer
-    permission_class = [IsAdminOrTech]
+    #permission_class = [IsAdminOrTech]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = ManufacturerFilters
-    ordering_fields = ['name', 'country', 'created_at']
+    ordering_fields = ['name', 'country', 'created_at', 'updated_at']

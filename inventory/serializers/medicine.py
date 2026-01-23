@@ -7,3 +7,8 @@ class MedicineSerializer(serializers.ModelSerializers):
         fields = '__all__'
         read_only_fields = ['id', 'created_at', 'updated_at']
         
+        
+    def validate_strength(self, value):
+        if value < 0:
+            raise serializers.ValidationError("Medicine Strength can not be negative")
+        return value
