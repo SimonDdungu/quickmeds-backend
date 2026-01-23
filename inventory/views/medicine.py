@@ -1,6 +1,6 @@
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from inventory.permissions import IsAdminOrTech
+from inventory.permissions.roles import IsAdminOrTech
 from inventory.models import Medicine
 from inventory.serializers import MedicineSerializer
 from inventory.filters import MedicineFilterSet

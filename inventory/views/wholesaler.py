@@ -1,5 +1,5 @@
 from rest_framework import viewsets, filters
-from inventory.permissions import IsAdmin
+from inventory.permissions.roles import IsAdmin
 from django_filters.rest_framework import DjangoFilterBackend
 from inventory.filters import WholesalerFilterSet
 from inventory.models import Wholesaler
