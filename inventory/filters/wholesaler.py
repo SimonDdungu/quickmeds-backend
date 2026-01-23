@@ -10,3 +10,4 @@ class WholesalerFilterSet(filters.FilterSet):
     
     class Meta:
         model = Wholesaler
+        fields = []
