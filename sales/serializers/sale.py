@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from sales.models import Sale
 from users.serializers import UserSerializer
-from sales.serializers import SaleItemSerializer
+from sales.serializers.sale_item import SaleItemSerializer
 
 class SaleSerializer(serializers.ModelSerializer):
     items = SaleItemSerializer(many=True)
