@@ -4,10 +4,10 @@ class IsAdmin(BasePermission):
     def has_permission(self, request, view):
             if view.action in ['list', 'retrieve']:
                 return request.user.is_authenticated 
-            return request.user.is_authenticated and request.user.role.slug == 'admin'
+            return request.user.is_authenticated and request.user.groups.filter(name='Admin').exists()
 
 class IsAdminOrTech(BasePermission):
     def has_permission(self, request, view):
             if view.action in ['list', 'retrieve']:
                 return request.user.is_authenticated 
-            return request.user.is_authenticated and request.user.role.slug in ['admin', 'tech']
+            return request.user.is_authenticated and request.user.groups.filter(name__in=['Admin', 'Tech']).exists()
