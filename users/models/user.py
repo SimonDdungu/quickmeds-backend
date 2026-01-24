@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager, Group
 from users.models import Role
 import uuid
 
@@ -18,35 +17,41 @@ class UserManager(BaseUserManager):
             raise ValueError("Password is required")
         
         if not role:
-            role, _ = Role.objects.get_or_create(name="Staff")
+            #role, _ = Role.objects.get_or_create(name="Cashier")
+            role, _ = Group.objects.get_or_create(name="Cashier")
             
-        user = self.model(username, email=email, role=role, **extra_fields)
+        
+        user = self.model(username, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        user.groups.add(role)
         return user
     
     def create_superuser(self, username, email, password, **extra_fields):
 
-        role, _ = Role.objects.get_or_create(name="Admin")
+        #role, _ = Role.objects.get_or_create(name="Admin")
+        admin_group, _ = Group.objects.get_or_create(name="Admin")
             
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         
         
-        return self.create_user(username, email, password, role=role, **extra_fields)
+        return self.create_user(username, email, password, role=admin_group, **extra_fields)
             
 
 
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    username = models.CharField(max_length=50, unique=True)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
-    phone_number = models.CharField(max_length=15, blank=True, unique=True)
-    role = models.ForeignKey(Role, on_delete=models.PROTECT, related_name='users')
+    phone_number = models.CharField(max_length=15, blank=True, null=True, unique=True)
+    #role = models.ForeignKey(Role, on_delete=models.PROTECT, related_name='users')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     objects = UserManager()
+    
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.username

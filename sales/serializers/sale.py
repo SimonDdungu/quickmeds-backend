@@ -10,7 +10,7 @@ class SaleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
         fields = "__all__"
-        read_only_fields = ["id", "sold_by", "sold_at", "total_amount"]
+        read_only_fields = ["id", "sold_by", "sold_at", "total_amount", 'updated_at']
         
     def create(self, validated_data):
         all_items = validated_data.pop("items")
