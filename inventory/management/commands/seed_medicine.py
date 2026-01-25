@@ -15,7 +15,7 @@ class Command(BaseCommand):
                 data["manufacturer"] = Manufacturer.objects.get(pk=data["manufacturer"])
             except Manufacturer.DoesNotExist:
                 self.stdout.write(
-                    self.style.ERROR(f"Manufacturer with id: {data["manufacturer"]} does not exist. Skipping {data["name"]}...")
+                    self.style.ERROR(f"Manufacturer with id: {data['manufacturer']} does not exist. Skipping Medicine {data['name']}...")
                 )
                 continue
             

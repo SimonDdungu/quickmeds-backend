@@ -9,7 +9,7 @@ class Command(BaseCommand):
         created = 0
         
         for data in WHOLESALER:
-            obj, was_created = Wholesaler.objects.create(
+            obj, was_created = Wholesaler.objects.get_or_create(
                 name = data["name"],
                 country = data["country"],
                 defaults = data

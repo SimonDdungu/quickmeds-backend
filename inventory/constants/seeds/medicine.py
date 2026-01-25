@@ -109,6 +109,8 @@ MEDICINE = [
     "manufacturer": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
     "image": null
   },
+  
+  
   {
     "id": "d0e1f2a3-b4c5-4e4f-7a8b-9c0d1e2f3a4b",
     "name": "Tenvir Solo",
@@ -120,13 +122,6 @@ MEDICINE = [
     "manufacturer": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
     "image": null
   },
-  
-  
-  
-  
-  
-  
-  
   {
     "id": "e1f2a3b4-c5d6-4f5a-8b9c-0d1e2f3a4b5c",
     "name": "Glucophage Forte",
