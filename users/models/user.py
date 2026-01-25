@@ -21,6 +21,7 @@ class UserManager(BaseUserManager):
             role, _ = Group.objects.get_or_create(name="Cashier")
             
         
+        email = email.lower()
         user = self.model(username, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
