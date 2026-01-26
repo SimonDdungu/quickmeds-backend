@@ -13,4 +13,4 @@ class Sale(models.Model):
         ordering = ['-sold_at']
         
     def __str__(self):
-        return f"Sale: {self.receipt_number}"
+        return f"Reciept Number: {self.id}"
