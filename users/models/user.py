@@ -22,6 +22,7 @@ class UserManager(BaseUserManager):
             
         
         email = email.lower()
+        extra_fields.setdefault("is_staff", True)
         user = self.model(username, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
