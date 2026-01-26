@@ -16,10 +16,16 @@ class Command(BaseCommand):
         tech_created = 0
         
         for data in CASHIERS:
+            password = data.pop("password")
+            
             obj, was_created = User.objects.get_or_create(
                 username = data["username"],
                 defaults=data
             )
+            
+            obj.is_staff = True
+            obj.set_password(password)
+            obj.save()
             
             obj.groups.add(cashier_group)
             
@@ -27,10 +33,16 @@ class Command(BaseCommand):
                 cashier_created += 1
            
         for data in TECH:
+            password = data.pop("password")
+            
             obj, was_created = User.objects.get_or_create(
                 username = data["username"],
                 defaults=data
             )
+            
+            obj.is_staff = True
+            obj.set_password(password)
+            obj.save()
             
             obj.groups.add(tech_group)
             
