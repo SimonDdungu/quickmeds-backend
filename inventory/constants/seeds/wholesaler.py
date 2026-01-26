@@ -1,6 +1,6 @@
 WHOLESALER = [
     {
-        "id": "e9a2b3c4-1d2e-4f5g-8h9i-0j1k2l3m4n5o",
+        "id": "e9a2b3c4-1d2e-4f5a-8b9c-0d1e2f3a4b5c",
         "name": "Abacus Pharma (Africa) Limited",
         "country": "Uganda",
         "email": "aplug.abacus@abacuspharma.com",
@@ -8,7 +8,7 @@ WHOLESALER = [
         "address": "Plot 28B-34B, Coronation Avenue, UMA Show Grounds, Kampala"
     },
     {
-        "id": "f8b3c4d5-2e3f-5g6h-9i0j-1k2l3m4n5o6p",
+        "id": "f8b3c4d5-2e3f-4a5b-9c0d-1e2f3a4b5c6d",
         "name": "Crown Healthcare (K) Ltd",
         "country": "Kenya",
         "email": "info@crownkenya.com",
@@ -32,7 +32,7 @@ WHOLESALER = [
         "address": "63 Westlands Road, Nairobi"
     },
     {
-        "id": "c3d4e5f6-a1b2-4c7d-0e1f-a2b3c4d5e6f7",
+        "id": "c3d4e5f6-a1b2-4c7d-8e9f-a2b3c4d5e6f7",
         "name": "Pyramid Pharma Ltd",
         "country": "Tanzania",
         "email": "talktous@pyramidpharma.co.tz",
@@ -40,7 +40,7 @@ WHOLESALER = [
         "address": "Plot 45A/B, Regent Estate, Mikocheni, Dar es Salaam"
     },
     {
-        "id": "d4e5f6a1-b2c3-4d8e-1f2a-b3c4d5e6f7a8",
+        "id": "d4e5f6a1-b2c3-4d8e-9f0a-b3c4d5e6f7a8",
         "name": "Regal Pharmaceuticals Ltd",
         "country": "Kenya",
         "email": "info@regalpharmaceuticals.com",
@@ -48,7 +48,7 @@ WHOLESALER = [
         "address": "Plot No. 209/7879, Bunyala Road, Nairobi"
     },
     {
-        "id": "e5f6a1b2-c3d4-4e9f-2a3b-c4d5e6f7a8b9",
+        "id": "e5f6a1b2-c3d4-4e9f-8a7b-c4d5e6f7a8b9",
         "name": "Surgimed Medical Supplies",
         "country": "Uganda",
         "email": "info.ug@surgimedgrp.com",
@@ -56,7 +56,7 @@ WHOLESALER = [
         "address": "Plot 12, Bombo Road, G.M Building, Kampala"
     },
     {
-        "id": "f6a1b2c3-d4e5-4f0a-3b4c-d5e6f7a8b9c0",
+        "id": "f6a1b2c3-d4e5-4f0a-8b9c-d5e6f7a8b9c0",
         "name": "Kippure Pharmaceutical Wholesalers",
         "country": "Rwanda",
         "email": "info@kippure.rw",
@@ -64,7 +64,7 @@ WHOLESALER = [
         "address": "KN 3 Rd, Kigali City Tower, 2nd Floor, Kigali"
     },
     {
-        "id": "a7b8c9d0-e1f2-4a1b-4c5d-e6f7a8b9c0d1",
+        "id": "a7b8c9d0-e1f2-4a1b-8c9d-e6f7a8b9c0d1",
         "name": "Phillips Pharmaceuticals Ltd",
         "country": "Kenya",
         "email": "admin@phillipsgroup.co.ke",
@@ -72,7 +72,7 @@ WHOLESALER = [
         "address": "Phillips House, Wambui Road, Muthaiga North, Nairobi"
     },
     {
-        "id": "b8c9d0e1-f2a3-4b2c-5d6e-f7a8b9c0d1e2",
+        "id": "b8c9d0e1-f2a3-4b2c-8d9e-f7a8b9c0d1e2",
         "name": "Beta Healthcare International",
         "country": "Tanzania",
         "email": "info.tz@bethealthcare.com",
