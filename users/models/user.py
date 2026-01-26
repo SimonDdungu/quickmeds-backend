@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager, Group
 from users.models import Role
+from users.constants import GENDER
 import uuid
 
 
@@ -46,6 +47,7 @@ class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True, unique=True)
+    gender = models.CharField(max_length=6, choices=GENDER)
     #role = models.ForeignKey(Role, on_delete=models.PROTECT, related_name='users')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
