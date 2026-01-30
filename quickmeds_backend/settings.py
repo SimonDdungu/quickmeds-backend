@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
+    'django_filters',
     'rest_framework_simplejwt.token_blacklist',
     "corsheaders",
     
@@ -52,14 +53,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     
 ]
 
@@ -151,35 +152,43 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-CORS_ALLOW_ALL_ORIGINS = os.getenv("CORS_ALLOW_ALL_ORIGINS") == "True"
+from corsheaders.defaults import default_headers
+CORS_ALLOWED_ORIGINS = [os.getenv("CORS_ALLOWED_ORIGINS")]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "Authorization",
+]
 
 
-from datetime import timedelta
+# from datetime import timedelta
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-    ),
+#     "DEFAULT_AUTHENTICATION_CLASSES": (
+#         "rest_framework_simplejwt.authentication.JWTAuthentication",
+#     ),
+#     "DEFAULT_PERMISSION_CLASSES": (
+#         "rest_framework.permissions.IsAuthenticated",
+#     ),
+    'DEFAULT_FILTER_BACKENDS': (
+            'django_filters.rest_framework.DjangoFilterBackend',
+        ),
 
     "DEFAULT_PAGINATION_CLASS": 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
 
-access_token_minutes = int(os.getenv("ACCESS_TOKEN_LIFETIME"))
-refresh_token_days = int(os.getenv("REFRESH_TOKEN_LIFETIME"))
+# access_token_minutes = int(os.getenv("ACCESS_TOKEN_LIFETIME"))
+# refresh_token_days = int(os.getenv("REFRESH_TOKEN_LIFETIME"))
 
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=access_token_minutes),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=refresh_token_days),
-    "AUTH_HEADER_TYPES": ("Bearer",),
+# SIMPLE_JWT = {
+#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=access_token_minutes),
+#     "REFRESH_TOKEN_LIFETIME": timedelta(days=refresh_token_days),
+#     "AUTH_HEADER_TYPES": ("Bearer",),
     
-    "ROTATE_REFRESH_TOKENS": True,
-    "BLACKLIST_AFTER_ROTATION": True,
-}
+#     "ROTATE_REFRESH_TOKENS": True,
+#     "BLACKLIST_AFTER_ROTATION": True,
+# }
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

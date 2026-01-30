@@ -5,7 +5,7 @@ import uuid
 class Manufacturer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    country = models.CharField(max_length=50, blank=True, choices=COUNTRIES)
+    country = models.CharField(max_length=60, blank=True, choices=COUNTRIES)
     email = models.EmailField(unique=True, blank=True, null=True)
     contact = models.CharField(max_length=15, unique=True, blank=True, null=True)
     address = models.CharField(max_length=200, blank=True)
