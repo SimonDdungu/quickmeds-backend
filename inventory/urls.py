@@ -7,7 +7,7 @@ router = DefaultRouter()
 router.register(r'manufacturers', ManufacturerViewSet, basename='manufacturer')
 router.register(r'batch', BatchViewSet, basename='batch')
 router.register(r'medicine', MedicineViewSet, basename='medicine')
-router.register(r'wholesaler', WholesalerViewSet, basename='wholesaler')
+router.register(r'wholesalers', WholesalerViewSet, basename='wholesaler')
 
 urlpatterns = [
     path('', include(router.urls)),

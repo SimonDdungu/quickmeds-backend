@@ -159,6 +159,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     "Authorization",
 ]
 
+APPEND_SLASH = False
 
 # from datetime import timedelta
 
