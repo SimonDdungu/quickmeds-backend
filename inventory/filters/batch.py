@@ -1,8 +1,9 @@
 from django_filters import rest_framework as filters
+from django.db.models import Q
 from inventory.models import Batch
 
 class BatchFilters(filters.FilterSet):
-    medicine = filters.CharFilter(field_name='medicine__name', lookup_expr='icontains')
+    search = filters.CharFilter(method='filter_medicine_search')
     wholesaler = filters.CharFilter(field_name='wholesaler__name', lookup_expr='icontains')
     
     selling_price_minimum = filters.NumberFilter(field_name='selling_price_per_unit', lookup_expr='gte')
@@ -25,3 +26,9 @@ class BatchFilters(filters.FilterSet):
     class Meta:
         model = Batch
         fields = ['batch_number', 'purchase_price', 'selling_price_per_unit', 'quantity_received', 'quantity_remaining', 'expiry_date']
+        
+    def filter_medicine_search(self, queryset, name, value):
+        return queryset.filter(
+            Q(medicine__name__icontains=value) |
+            Q(medicine__generic_name__icontains=value)
+        )

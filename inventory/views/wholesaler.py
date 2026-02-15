@@ -1,9 +1,12 @@
+import logging
 from rest_framework import viewsets, filters
 from inventory.permissions.roles import IsAdmin
 from django_filters.rest_framework import DjangoFilterBackend
 from inventory.filters import WholesalerFilterSet
 from inventory.models import Wholesaler
 from inventory.serializers import WholesalerSerializers
+
+logger = logging.getLogger(__name__)
 
 class WholesalerViewSet(viewsets.ModelViewSet):
     queryset = Wholesaler.objects.all()
@@ -14,4 +17,6 @@ class WholesalerViewSet(viewsets.ModelViewSet):
     filterset_class = WholesalerFilterSet
     ordering_fields = ['name', 'country', 'created_at', 'updated_at']
     
-    
+    def handle_exception(self, exc):
+        logger.error(f"Wholesaler Error: {exc}")
+        return super().handle_exception(exc)

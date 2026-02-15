@@ -1,8 +1,19 @@
 from rest_framework import serializers
 from datetime import date
-from inventory.models import Batch
+from inventory.models import Batch, Medicine, Wholesaler
+from inventory.serializers.medicine import MedicineSummarySerializer
+from inventory.serializers.wholesaler import WholesalerSummarySerializer
+
+
 
 class BatchSerializer(serializers.ModelSerializer):
+    quantity_remaining = serializers.IntegerField(read_only=True)
+    medicine = serializers.PrimaryKeyRelatedField(queryset=Medicine.objects.all(), write_only=True)
+    medicine_details = MedicineSummarySerializer(source="medicine", read_only=True)
+    
+    wholesaler = serializers.PrimaryKeyRelatedField(queryset=Wholesaler.objects.all(), write_only=True)
+    wholesaler_details = WholesalerSummarySerializer(source="wholesaler", read_only=True)
+    
     class Meta:
         model = Batch
         fields = '__all__'
@@ -42,7 +53,8 @@ class BatchSerializer(serializers.ModelSerializer):
         return data
     
     def create(self, validated_data):
-        validated_data["quanity_remaining"] = validated_data["quanity_received"]
+        validated_data["quantity_remaining"] = validated_data["quantity_received"]
         return super().create(validated_data)
+    
     
     

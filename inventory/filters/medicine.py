@@ -1,7 +1,9 @@
 from django_filters import rest_framework as filters
+from django.db.models import Q
 from inventory.models import Medicine
 
 class MedicineFilterSet(filters.FilterSet):
+    search = filters.CharFilter(method='filter_medicine_search')
     name = filters.CharFilter(field_name='name', lookup_expr='icontains')
     generic_name = filters.CharFilter(field_name='generic_name', lookup_expr='icontains')
     dosage_form = filters.CharFilter(field_name='dosage_form', lookup_expr='icontains')
@@ -14,3 +16,9 @@ class MedicineFilterSet(filters.FilterSet):
     class Meta:
         model = Medicine
         fields = ['strength']
+        
+    def filter_medicine_search(self, queryset, name, value):
+        return queryset.filter(
+            Q(name__icontains=value) |
+            Q(generic_name__icontains=value)
+        )

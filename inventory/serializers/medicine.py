@@ -20,3 +20,9 @@ class MedicineSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Medicine Strength can not be negative")
         return value
     
+    
+    
+class MedicineSummarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medicine
+        exclude = ['created_at', 'updated_at']
