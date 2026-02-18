@@ -1,7 +1,9 @@
 from django_filters import rest_framework as filters
 from users.models import User
+from django.db.models import Q
 
 class UserFilterSet(filters.FilterSet):
+    search = filters.CharFilter(method='filter_fullname_search')
     first_name = filters.CharFilter(field_name='first_name', lookup_expr='icontains')
     last_name = filters.CharFilter(field_name='last_name', lookup_expr='icontains')
     username = filters.CharFilter(field_name='username', lookup_expr='icontains')
@@ -11,4 +13,10 @@ class UserFilterSet(filters.FilterSet):
     
     class Meta:
         model = User
-        fields = []
+        fields = ['gender']
+        
+    def filter_fullname_search(self, queryset, name, value):
+        return queryset.filter(
+        Q(first_name__icontains=value) |
+        Q(last_name__icontains=value)
+    )

@@ -3,6 +3,8 @@ from django.contrib.auth.models import Group
 from users.models import User
 
 class UserSerializer(serializers.ModelSerializer):
+    groups = serializers.SlugRelatedField(many=True,read_only=True, slug_field='name')
+
     password = serializers.CharField(write_only=True)
     role = serializers.CharField(write_only=True)
     class Meta:

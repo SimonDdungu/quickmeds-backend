@@ -23,6 +23,7 @@ class MedicineSerializer(serializers.ModelSerializer):
     
     
 class MedicineSummarySerializer(serializers.ModelSerializer):
+    manufacturer_detail = ManufacturerSerializer(source="manufacturer", read_only=True)
     class Meta:
         model = Medicine
         exclude = ['created_at', 'updated_at']
