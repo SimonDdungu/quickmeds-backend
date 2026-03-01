@@ -12,9 +12,6 @@ class CookieTokenRefreshView(TokenRefreshView):
         serializer = self.get_serializer(data={"refresh": refresh})
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
-
-        # # Rotate refresh token
-        # response = Response({"access": data["access"]})
         
         response = Response({"detail": "Token refreshed"})
         

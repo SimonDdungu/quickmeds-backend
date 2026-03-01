@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.routers import DefaultRouter
-from users.views import UserViewSet, PasswordResetConfirmView, PasswordResetRequestView, GroupViewSet, CookieTokenObtainPairView, CookieTokenRefreshView
+from users.views import UserViewSet, PasswordResetConfirmView, PasswordResetRequestView, GroupViewSet, CookieTokenObtainPairView, CookieTokenRefreshView, LogoutView
 
 
 router = DefaultRouter()
@@ -12,12 +12,13 @@ urlpatterns = [
     path('', include(router.urls)),
     path('auth/password-reset/', PasswordResetRequestView.as_view()),
     path('auth/password-reset-confirm/', PasswordResetConfirmView.as_view()),
-    path("auth/login/", CookieTokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("auth/token/refresh/", CookieTokenRefreshView.as_view(), name="token_refresh"), 
-    # path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  
+    path("auth/login/", CookieTokenObtainPairView.as_view(), name="get_tokens"),
+    path("auth/logout/", LogoutView.as_view(), name="logout"), 
+    path("auth/token/refresh/", CookieTokenRefreshView.as_view(), name="refresh_tokens"),   
 ]
 
+ # path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  
 # path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     #path('api/auth/roles/', RoleList.as_view(), name='roles'),

@@ -13,7 +13,7 @@ class CookieTokenObtainPairView(TokenObtainPairView):
             key="access_token",
             value=access,
             httponly=True,
-            secure=False,  # True in production
+            secure=False, 
             samesite="Lax",
             max_age=15 * 60,  # 5 minutes (match access lifetime)
             path="/"
@@ -25,14 +25,11 @@ class CookieTokenObtainPairView(TokenObtainPairView):
             key="refresh_token",
             value=refresh,
             httponly=True,
-            secure=False,  # True in production with HTTPS
+            secure=False,  
             samesite="Lax",
             max_age=30*24*60*60,  # 30 days
             path="/"
         )
-
-        # # Remove refresh from response body so JS cannot access it
-        # response.data.pop("refresh", None)
         
         # Remove tokens from response body
         response.data = {"detail": "Login successful"}
