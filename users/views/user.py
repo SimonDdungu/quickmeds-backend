@@ -1,5 +1,8 @@
 import logging
 from rest_framework import viewsets, filters
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from users.filters import UserFilterSet
 from users.permissions import UserAuth
@@ -19,3 +22,13 @@ class UserViewSet(viewsets.ModelViewSet):
     def handle_exception(self, exc):
         logger.error(f"User Error: {exc}")
         return super().handle_exception(exc)
+    
+    
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    def me(self, request):
+        """
+        Endpoint: GET /api/users/me/
+        Returns the profile of the currently authenticated user.
+        """
+        serializer = self.get_serializer(request.user)
+        return Response(serializer.data)

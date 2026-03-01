@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
         
     def create(self, validated_data):
         password = validated_data.pop('password')
-        role = validated_data.pop('role', 'cashier')
+        role = validated_data.pop('role', 'Cashier')
         
         try:
             group = Group.objects.get(name=role)
@@ -47,3 +47,10 @@ class UserSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+    
+    
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        if not data['profile_image']:
+            data['profile_image'] = '/media/profile/profile_placeholder.png'
+        return data

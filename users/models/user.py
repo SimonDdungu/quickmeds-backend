@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager, Group
+from django_resized import ResizedImageField
 from users.models import Role
 from users.constants import GENDER
 import uuid
@@ -18,7 +19,6 @@ class UserManager(BaseUserManager):
             raise ValueError("Password is required")
         
         if not role:
-            #role, _ = Role.objects.get_or_create(name="Cashier")
             role, _ = Group.objects.get_or_create(name="Cashier")
             
         
@@ -31,8 +31,6 @@ class UserManager(BaseUserManager):
         return user
     
     def create_superuser(self, username, email, password, **extra_fields):
-
-        #role, _ = Role.objects.get_or_create(name="Admin")
         admin_group, _ = Group.objects.get_or_create(name="Admin")
             
         extra_fields.setdefault("is_staff", True)
@@ -45,7 +43,15 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+    profile_image = ResizedImageField(
+        size=[400, 400], 
+        crop=['middle', 'center'], 
+        quality=75, 
+        force_format='WEBP', 
+        upload_to='profile/', 
+        blank=True, 
+        null=True
+    )
     phone_number = models.CharField(max_length=15, blank=True, null=True, unique=True)
     gender = models.CharField(max_length=6, choices=GENDER)
     #role = models.ForeignKey(Role, on_delete=models.PROTECT, related_name='users')
@@ -59,3 +65,7 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+#OLD IMAGE FIELD
+#profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
