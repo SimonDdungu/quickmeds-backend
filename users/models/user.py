@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager, Group
 from django_resized import ResizedImageField
-from users.models import Role
+from quickmeds_backend.storage_backends import SupabaseImageStorage
 from users.constants import GENDER
 import uuid
 
@@ -49,12 +49,13 @@ class User(AbstractUser):
         quality=75, 
         force_format='WEBP', 
         upload_to='profile/', 
+        storage=SupabaseImageStorage(), 
         blank=True, 
-        null=True
+        null=True,
+        
     )
     phone_number = models.CharField(max_length=15, blank=True, null=True, unique=True)
     gender = models.CharField(max_length=6, choices=GENDER)
-    #role = models.ForeignKey(Role, on_delete=models.PROTECT, related_name='users')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
 
 # Application definition
@@ -219,5 +219,26 @@ LOGGING = {
     "root": {
         "handlers": ["console"],
         "level": "ERROR",
+    },
+}
+
+SUPABASE_S3_ACCESS_KEY = os.getenv("SUPABASE_S3_ACCESS_KEY")
+SUPABASE_S3_SECRET_KEY = os.getenv("SUPABASE_S3_SECRET_KEY")
+SUPABASE_S3_ENDPOINT   = os.getenv("SUPABASE_S3_ENDPOINT")
+SUPABASE_S3_BUCKET     = os.getenv("SUPABASE_S3_BUCKET")
+SUPABASE_S3_REGION     = os.getenv("SUPABASE_S3_REGION")
+SUPABASE_PROJECT_REF   = os.getenv("SUPABASE_PROJECT_REF")
+
+SUPABASE_IMAGE_STORAGE = {
+    "BACKEND": "core.storage_backends.SupabaseImageStorage",
+    "OPTIONS": {
+        "access_key":    os.getenv("SUPABASE_S3_ACCESS_KEY"),
+        "secret_key":    os.getenv("SUPABASE_S3_SECRET_KEY"),
+        "bucket_name":   os.getenv("SUPABASE_S3_BUCKET"),
+        "endpoint_url":  os.getenv("SUPABASE_S3_ENDPOINT"),
+        "region_name":   os.getenv("SUPABASE_S3_REGION"),
+        "default_acl":   "public-read",
+        "file_overwrite": False,
+        "custom_domain": os.getenv("SUPABASE_CUSTOM_DOMAIN"),
     },
 }
