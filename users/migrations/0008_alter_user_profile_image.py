@@ -16,4 +16,4 @@ class Migration(migrations.Migration):
             name='profile_image',
             field=django_resized.forms.ResizedImageField(blank=True, crop=['middle', 'center'], force_format='WEBP', keep_meta=True, null=True, quality=75, scale=None, size=[400, 400], storage='users.supabase_storage.SupabaseStorage', upload_to='profile/'),
         ),
-    ] already on the Supabase database. Noth
+    ]
