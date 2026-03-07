@@ -19,8 +19,8 @@ class CookieTokenRefreshView(TokenRefreshView):
             key="access_token",
             value=data["access"],
             httponly=True,
-            secure=False,
-            samesite="Lax",
+            secure=True,
+            samesite="None",
             max_age=15 * 60,
             path="/"
         )
@@ -31,8 +31,8 @@ class CookieTokenRefreshView(TokenRefreshView):
                 key="refresh_token",
                 value=data["refresh"],
                 httponly=True,
-                secure=False,
-                samesite="Lax",
+                secure=True,
+                samesite="None",
                 max_age=30*24*60*60,
                 path="/"
             )

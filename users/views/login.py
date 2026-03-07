@@ -13,8 +13,8 @@ class CookieTokenObtainPairView(TokenObtainPairView):
             key="access_token",
             value=access,
             httponly=True,
-            secure=False, 
-            samesite="Lax",
+            secure=True, 
+            samesite="None",
             max_age=15 * 60,  # 5 minutes (match access lifetime)
             path="/"
         )
@@ -25,8 +25,8 @@ class CookieTokenObtainPairView(TokenObtainPairView):
             key="refresh_token",
             value=refresh,
             httponly=True,
-            secure=False,  
-            samesite="Lax",
+            secure=True,  
+            samesite="None",
             max_age=30*24*60*60,  # 30 days
             path="/"
         )
