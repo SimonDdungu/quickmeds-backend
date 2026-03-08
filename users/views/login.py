@@ -15,7 +15,7 @@ class CookieTokenObtainPairView(TokenObtainPairView):
             httponly=True,
             secure=True, 
             samesite="None",
-            max_age=15 * 60,  # 5 minutes (match access lifetime)
+            max_age=15 * 60,  # 15 minutes (match access lifetime)
             path="/"
         )
 
