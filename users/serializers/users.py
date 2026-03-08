@@ -52,5 +52,5 @@ class UserSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         if not data['profile_image']:
-            data['profile_image'] = '/media/profile/profile_placeholder.png'
+            data['profile_image'] = 'https://kmmrgijtqahiilujqbck.supabase.co/storage/v1/object/public/QuickMeds/profile/profile_placeholder.png'
         return data
