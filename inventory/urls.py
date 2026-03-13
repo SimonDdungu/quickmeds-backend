@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from inventory.views import ManufacturerViewSet, BatchViewSet, MedicineViewSet, WholesalerViewSet
+from inventory.views import ManufacturerViewSet, BatchViewSet, MedicineViewSet, WholesalerViewSet, MedicineSummaryViewSet
 from inventory.views.country import countries_list
 from inventory.views.medicine_choices import dosage_form_list, strength_unit_list
 
@@ -8,6 +8,7 @@ router = DefaultRouter()
 router.register(r'manufacturers', ManufacturerViewSet, basename='manufacturer')
 router.register(r'batches', BatchViewSet, basename='batch')
 router.register(r'medicine', MedicineViewSet, basename='medicine')
+router.register(r'medicine-summary', MedicineSummaryViewSet, basename='medicine-summary')
 router.register(r'wholesalers', WholesalerViewSet, basename='wholesaler')
 
 urlpatterns = [

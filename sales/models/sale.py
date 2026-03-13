@@ -8,7 +8,8 @@ class Sale(models.Model):
     sold_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='sales')
     sold_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
+    
     class Meta:
         ordering = ['-sold_at']
         

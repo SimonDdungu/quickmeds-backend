@@ -14,6 +14,9 @@ class BatchSerializer(serializers.ModelSerializer):
     wholesaler = serializers.PrimaryKeyRelatedField(queryset=Wholesaler.objects.all(), write_only=True)
     wholesaler_details = WholesalerSummarySerializer(source="wholesaler", read_only=True)
     
+    is_expiring_soon = serializers.IntegerField(read_only=True)
+    is_expired = serializers.BooleanField(read_only=True)
+    
     class Meta:
         model = Batch
         fields = '__all__'

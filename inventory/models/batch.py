@@ -30,12 +30,14 @@ class Batch(models.Model):
     def __str__(self):
         return f"{self.medicine.name} - {self.batch_number} expires {self.expiry_date}"
     
+    @property
     def is_expired(self):
         return date.today() > self.expiry_date
     
-    def is_expiring_soon(self, expires_in_days=30):
+    @property
+    def is_expiring_soon(self):
         days_left = (self.expiry_date - date.today()).days
-        if 0 <= days_left <= expires_in_days:      #if not yet expired (0) but within expiry days (30)... E.G: 0 days left (It has already expired) <= 5 days left <= 30 days to expire - True is expiring soon
+        if 0 <= days_left <= 30:      #if not yet expired (0) but within 30 days... E.G: 0 days left (It has already expired) <= 5 days left <= 30 days to expire - True is expiring soon
             return days_left
         else:
             return None

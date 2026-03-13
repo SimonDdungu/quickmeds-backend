@@ -1,3 +1,4 @@
+from datetime import date
 from quickmeds_backend.storage_backends import SupabaseImageStorage
 from django.db import models
 from .manufacturer import Manufacturer
@@ -46,3 +47,8 @@ class Medicine(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def current_price(self):
+        batch = self.batches.filter(quantity_remaining__gt=0, expiry_date__gt=date.today()).order_by('expiry_date').first()
+        return batch.selling_price_per_unit if batch else None

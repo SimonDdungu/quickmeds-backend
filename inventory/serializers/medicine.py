@@ -12,7 +12,7 @@ class MedicineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medicine
         fields = '__all__'
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'current_price']
         
         
     def validate_strength(self, value):
@@ -23,7 +23,7 @@ class MedicineSerializer(serializers.ModelSerializer):
     
     
 class MedicineSummarySerializer(serializers.ModelSerializer):
-    manufacturer_detail = ManufacturerSerializer(source="manufacturer", read_only=True)
+    current_price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     class Meta:
         model = Medicine
-        exclude = ['created_at', 'updated_at']
+        exclude = ['created_at', 'updated_at', 'manufacturer', ]

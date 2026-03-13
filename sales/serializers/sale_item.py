@@ -7,10 +7,9 @@ class SaleItemSerializer(serializers.ModelSerializer):
     medicine = MedicineSerializer(read_only=True)
     batch = BatchSerializer(read_only=True)
     medicine_id = serializers.PrimaryKeyRelatedField(queryset=Medicine.objects.all(), write_only=True, source='medicine')
-    batch_id = serializers.PrimaryKeyRelatedField(queryset=Batch.objects.all(), write_only=True, source='batch')
     
     class Meta:
         model = SaleItem
-        fields = "__all__"
-        read_only_fields = ["id", "created_at", "updated_at"]
+        fields = '__all__'
+        read_only_fields = ["id", 'sale', 'unit_price', 'sub_total', "created_at", "updated_at"]
         

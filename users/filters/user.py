@@ -17,6 +17,7 @@ class UserFilterSet(filters.FilterSet):
         
     def filter_fullname_search(self, queryset, name, value):
         return queryset.filter(
-        Q(first_name__icontains=value) |
-        Q(last_name__icontains=value)
+        Q(sold_by__first_name__icontains=value) |
+        Q(sold_by__last_name__icontains=value) |
+        Q(sold_by__username__icontains=value)
     )
