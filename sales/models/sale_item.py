@@ -15,9 +15,5 @@ class SaleItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
-    # def subtotal(self):
-    #     return self.quantity * self.batch.selling_price_per_unit
-
     def __str__(self):
         return f"{self.quantity} x {self.medicine.generic_name}"

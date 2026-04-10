@@ -14,7 +14,7 @@ class SaleFilterSet(filters.FilterSet):
     
     class Meta:
         model = Sale
-        fields = ['id', 'total_amount', 'sold_at']
+        fields = ['id', 'total_amount', 'sold_at', 'status']
         
     def filter_fullname_search(self, queryset, name, value):
         return queryset.filter(

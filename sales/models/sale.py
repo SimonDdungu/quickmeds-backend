@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from sales.constants.status import STATUS
 import uuid
 
 class Sale(models.Model):
@@ -8,6 +9,7 @@ class Sale(models.Model):
     sold_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='sales')
     sold_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=50, choices=STATUS, default="Completed", db_index=True)
     
     
     class Meta:

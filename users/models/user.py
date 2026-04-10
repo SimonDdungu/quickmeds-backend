@@ -49,7 +49,7 @@ class User(AbstractUser):
         quality=75, 
         force_format='WEBP', 
         upload_to='profile/', 
-        storage=SupabaseImageStorage(), 
+         
         blank=True, 
         null=True,
         

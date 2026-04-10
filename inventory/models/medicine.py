@@ -31,7 +31,7 @@ class Medicine(models.Model):
     strength_unit = models.CharField(max_length=10, choices=STRENGTH_UNITS, blank=True, null=True)      #mg
     description = models.TextField(blank=True)
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.PROTECT, related_name='medicines')
-    image = models.ImageField(upload_to='medicine_images/', blank=True, null=True,  storage=SupabaseImageStorage())
+    image = models.ImageField(upload_to='medicine_images/', blank=True, null=True,  )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

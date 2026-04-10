@@ -23,7 +23,7 @@ def get_valid_batches(medicine, quantity_needed):
         remaining -= take  # After taking 6 tablets from Batch A, we need 4 tablets now, repeat with another batch.
 
     if remaining > 0:   # Lets say we wanted 20 tablets, but we only found 10 tablets, the remaining is 10 meaning, not enough stock.
-        raise serializers.ValidationError(f"Not enough stock for {medicine.generic_name}. \nOnly {quantity_needed - remaining} units available."
+        raise serializers.ValidationError(f"Not enough stock for {medicine.name} | {medicine.generic_name}. \nOnly {quantity_needed - remaining} units available."
         )
         
     return choosen_batches
@@ -79,6 +79,15 @@ class SaleSerializer(serializers.ModelSerializer):
         sale.save()
             
         return sale
+    
+    
+    
+    def update(self, instance, validated_data):
+        # Only allow status updates
+        if "status" in validated_data:
+            instance.status = validated_data.get("status", instance.status)
+            instance.save()
+        return instance
     
     
     

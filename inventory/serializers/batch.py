@@ -34,7 +34,7 @@ class BatchSerializer(serializers.ModelSerializer):
     
     def validate_expiry_date(self, value):
         if value <= date.today():
-            raise serializers.ValidationError("Medicine Batch is already expired!")
+            raise serializers.ValidationError("Batch is already expired!")
         return value
     
     def validate_purchase_price(self, value):
