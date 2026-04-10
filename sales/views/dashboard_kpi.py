@@ -1,5 +1,6 @@
 from django.db.models import Sum, Avg, Count
 from django.utils import timezone
+from datetime import timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from sales.models.sale import Sale
@@ -8,7 +9,7 @@ from sales.models.sale_item import SaleItem
 class TodayDashboardKPIView(APIView):
     def get(self, request):
         today = timezone.now().date()
-        yesterday = today - timezone.timedelta(days=1)
+        yesterday = today - timedelta(days=1)
 
         # Today's sales
         daily_sales = Sale.objects.filter(
