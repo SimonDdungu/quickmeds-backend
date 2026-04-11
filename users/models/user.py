@@ -52,7 +52,7 @@ class User(AbstractUser):
          
         blank=True, 
         null=True,
-        
+        storage=SupabaseImageStorage()
     )
     phone_number = models.CharField(max_length=15, blank=True, null=True, unique=True)
     gender = models.CharField(max_length=6, choices=GENDER)
