@@ -19,7 +19,7 @@ class TopSellingMedicinesView(APIView):
             )
             .values("medicine__id", "medicine__generic_name")
             .annotate(total_sold=Sum("quantity"))
-            .order_by("-total_sold")[:10]
+            .order_by("-total_sold")[:5]
         )
 
         data = [{ "medicine_id": item["medicine__id"], "medicine__generic_name": item["medicine__generic_name"], "total_sold": item["total_sold"] } for item in top_medicines]
