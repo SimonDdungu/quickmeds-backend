@@ -32,10 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
             
             
     def update(self, instance, validated_data):
-        password = validated_data.pop('password', None)
-        if password:
-            instance.set_password(password)
-
+       
         role = validated_data.pop('role', None)
         if role:
             group = Group.objects.get(name=role)
