@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from users.filters import UserFilterSet
-from users.permissions import UserAuth
+
 from users.models import User
 from users.serializers import UserSerializer
 
@@ -24,11 +24,20 @@ class UserViewSet(viewsets.ModelViewSet):
         return super().handle_exception(exc)
     
     
-    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    @action(detail=False, methods=['get', 'patch'], permission_classes=[IsAuthenticated])
     def me(self, request):
         """
-        Endpoint: GET /api/users/me/
+        Endpoint: /api/users/me/
         Returns the profile of the currently authenticated user.
         """
-        serializer = self.get_serializer(request.user)
-        return Response(serializer.data)
+        user = request.user
+
+        if request.method == "GET":
+            serializer = self.get_serializer(user)
+            return Response(serializer.data)
+        
+        if request.method == "PATCH":
+            serializer = self.get_serializer(user, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
