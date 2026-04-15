@@ -3,9 +3,12 @@ from django.db.models import Sum
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from sales.models.sale_item import SaleItem
+from rest_framework.permissions import IsAuthenticated
 
 
 class TopSellingMedicinesView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     def get(self, request):
         today = timezone.now().date()
         start_date = today.replace(day=1)  # first day of current month
