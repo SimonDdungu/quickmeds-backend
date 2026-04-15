@@ -5,6 +5,7 @@ from rest_framework import status
 from django.contrib.auth import update_session_auth_hash
 
 class ChangePasswordView(APIView):
+    throttle_scope = 'password'
     permission_classes = [IsAuthenticated]
 
     def post(self, request):

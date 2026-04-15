@@ -9,6 +9,7 @@ from inventory.serializers import BatchSerializer
 logger = logging.getLogger(__name__)
 
 class BatchViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'default'
     queryset = Batch.objects.all()
     serializer_class = BatchSerializer
     permission_classes = [InventoryPermission]

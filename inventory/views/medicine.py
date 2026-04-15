@@ -6,9 +6,12 @@ from inventory.models import Medicine
 from inventory.serializers import MedicineSerializer, MedicineSummarySerializer
 from inventory.filters import MedicineFilterSet
 
+
 logger = logging.getLogger(__name__)
 
+
 class MedicineViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'default'
     queryset = Medicine.objects.all()
     serializer_class = MedicineSerializer
     permission_classes = [InventoryPermission]
@@ -25,6 +28,7 @@ class MedicineViewSet(viewsets.ModelViewSet):
   
   
 class MedicineSummaryViewSet(viewsets.ReadOnlyModelViewSet):
+    throttle_scope = 'default'
     queryset = Medicine.objects.all()
     serializer_class = MedicineSummarySerializer
     permission_classes = [InventoryPermission]

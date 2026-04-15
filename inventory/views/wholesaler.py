@@ -9,6 +9,7 @@ from inventory.serializers import WholesalerSerializers
 logger = logging.getLogger(__name__)
 
 class WholesalerViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'default'
     queryset = Wholesaler.objects.all()
     serializer_class = WholesalerSerializers
     permission_classes = [InventoryPermission]

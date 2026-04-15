@@ -13,6 +13,7 @@ from users.serializers import UserSerializer
 logger = logging.getLogger(__name__)
 
 class UserViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'default'
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [UserPermission]

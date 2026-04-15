@@ -2,7 +2,8 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from rest_framework.response import Response
 
 class CookieTokenRefreshView(TokenRefreshView):
-
+    throttle_scope = 'login'
+    
     def post(self, request, *args, **kwargs):
         refresh = request.COOKIES.get("refresh_token")
         

@@ -2,7 +2,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
 
 class CookieTokenObtainPairView(TokenObtainPairView):
-
+    throttle_scope = 'login'
+    
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         refresh = response.data["refresh"]
