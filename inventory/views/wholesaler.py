@@ -1,6 +1,6 @@
 import logging
 from rest_framework import viewsets, filters
-from inventory.permissions.roles import IsAdmin
+from inventory.permissions.permissions import InventoryPermission
 from django_filters.rest_framework import DjangoFilterBackend
 from inventory.filters import WholesalerFilterSet
 from inventory.models import Wholesaler
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class WholesalerViewSet(viewsets.ModelViewSet):
     queryset = Wholesaler.objects.all()
     serializer_class = WholesalerSerializers
-    #permission_class = [IsAdmin]
+    permission_classes = [InventoryPermission]
     
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = WholesalerFilterSet

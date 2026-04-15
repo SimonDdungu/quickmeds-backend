@@ -1,7 +1,7 @@
 import logging
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from inventory.permissions.roles import IsAdminOrTech
+from inventory.permissions.permissions import InventoryPermission
 from inventory.models import Medicine
 from inventory.serializers import MedicineSerializer, MedicineSummarySerializer
 from inventory.filters import MedicineFilterSet
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class MedicineViewSet(viewsets.ModelViewSet):
     queryset = Medicine.objects.all()
     serializer_class = MedicineSerializer
-    #permission_class = [IsAdminOrTech]
+    permission_classes = [InventoryPermission]
     
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = MedicineFilterSet
@@ -27,7 +27,7 @@ class MedicineViewSet(viewsets.ModelViewSet):
 class MedicineSummaryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Medicine.objects.all()
     serializer_class = MedicineSummarySerializer
-    #permission_class = [IsAdminOrTech]
+    permission_classes = [InventoryPermission]
     
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = MedicineFilterSet

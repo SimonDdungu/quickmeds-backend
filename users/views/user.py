@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from users.filters import UserFilterSet
+from users.permissions.permissions import UserPermission
 
 from users.models import User
 from users.serializers import UserSerializer
@@ -14,7 +15,8 @@ logger = logging.getLogger(__name__)
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    #permission_class = [UserAuth]
+    permission_classes = [UserPermission]
+    
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = UserFilterSet
     ordering_fields = ['created_at', 'updated_at', 'username', 'first_name', 'last_name']
