@@ -1,6 +1,7 @@
 from django_filters import rest_framework as filters
 from django.db.models import Q
 from inventory.models import Batch
+from django.utils import timezone
 
 class BatchFilters(filters.FilterSet):
     search = filters.CharFilter(method='filter_medicine_search')
@@ -21,6 +22,10 @@ class BatchFilters(filters.FilterSet):
     expiry_date_from = filters.DateFilter(field_name='expiry_date', lookup_expr='gte')
     expiry_date_to   = filters.DateFilter(field_name='expiry_date', lookup_expr='lte')
     
+    is_expired = filters.BooleanFilter(method='filter_is_expired')
+    
+    
+    
     
     
     class Meta:
@@ -32,3 +37,14 @@ class BatchFilters(filters.FilterSet):
             Q(medicine__name__icontains=value) |
             Q(medicine__generic_name__icontains=value)
         )
+      
+      
+    def filter_is_expired(self, queryset, name, value):
+        today = timezone.now().date()
+
+        if value is True:
+            return queryset.filter(expiry_date__lte=today)
+        elif value is False:
+            return queryset.filter(expiry_date__gt=today)
+
+        return queryset

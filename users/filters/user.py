@@ -13,7 +13,7 @@ class UserFilterSet(filters.FilterSet):
     
     class Meta:
         model = User
-        fields = ['gender']
+        fields = ['gender', 'is_active']
         
     def filter_fullname_search(self, queryset, name, value):
         return queryset.filter(
