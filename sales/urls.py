@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from sales.views import SaleViewSet, SaleItemViewSet, TodayDashboardKPIView, SalesTrendView, TopSellingMedicinesView, MonthlySalesTrendView, WeeklyItemsSoldView
+from sales.views.available_stock import AvailableStockView
 
 router = DefaultRouter()
 router.register(r'sales', SaleViewSet, basename='sales')
@@ -13,5 +14,6 @@ urlpatterns = [
     path("dashboard/charts/me/monthly_sales/", MonthlySalesTrendView.as_view()),
     path("dashboard/charts/me/weekly_items/", WeeklyItemsSoldView.as_view()),
     path("dashboard/charts/me/top_selling_medicine/", TopSellingMedicinesView.as_view()),
+    path("stock/<str:medicine_id>/", AvailableStockView.as_view())
 ]
 
