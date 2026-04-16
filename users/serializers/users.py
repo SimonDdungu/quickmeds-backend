@@ -14,8 +14,18 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'groups', 'created_at', 'updated_at']
         
     def create(self, validated_data):
+        request = self.context.get("request")
+        user = request.user if request else None
+
         password = validated_data.pop('password')
         role = validated_data.pop('role', 'Cashier')
+        
+        if role == "Admin":
+            allowed_groups = ["Admin"]
+            if not user or not user.groups.filter(name__in=allowed_groups).exists():
+                raise serializers.ValidationError(
+                    {"detail": f"You are not allowed to assign {role} role"}
+                )
         
         try:
             group = Group.objects.get(name=role)
@@ -32,8 +42,22 @@ class UserSerializer(serializers.ModelSerializer):
             
             
     def update(self, instance, validated_data):
+        request = self.context.get("request")
+        user = request.user if request else None
        
         role = validated_data.pop('role', None)
+        
+        if role == "Admin":
+            allowed_groups = ["Admin"]
+            if not user or not user.groups.filter(name__in=allowed_groups).exists():
+                raise serializers.ValidationError(
+                    {"detail": f"You are not allowed to assign {role} role"}
+                )
+                
+        # Admin can not downgrade there own role.        
+        if instance == user and role != "Admin":
+            raise serializers.ValidationError({"detail": "Admins cannot remove their own admin role"})
+
         if role:
             group = Group.objects.get(name=role)
             instance.groups.clear()

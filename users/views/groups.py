@@ -14,3 +14,14 @@ class GroupViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = GroupsFilterSet
     
+    def get_queryset(self):
+        user = self.request.user
+
+        qs = Group.objects.all()
+
+        # hide Admin options
+        allowed_groups = ["Admin"]
+        if not user.groups.filter(name__in=allowed_groups).exists():
+            qs = qs.exclude(name__in=allowed_groups)
+
+        return qs
