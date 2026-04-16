@@ -6,6 +6,7 @@ from sales.models import SaleItem
 from sales.serializers import SaleItemSerializer
 
 class SaleItemViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'default'
     queryset = SaleItem.objects.all()
     serializer_class = SaleItemSerializer
     #permission_class = [IsAuthenticated]

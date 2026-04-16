@@ -11,6 +11,7 @@ from rest_framework import status
 logger = logging.getLogger(__name__)
 
 class SaleViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'default'
     queryset = Sale.objects.all()
     serializer_class = SaleSerializer
     #permission_class = [IsAdminOrTech]

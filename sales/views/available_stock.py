@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from inventory.models.medicine import Medicine
 
 class AvailableStockView(APIView):
+    throttle_scope = 'default'
     permission_classes = [IsAuthenticated]
     
     def get(self, request, medicine_id):

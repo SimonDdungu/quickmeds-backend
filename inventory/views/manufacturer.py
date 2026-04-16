@@ -9,6 +9,7 @@ from inventory.filters import ManufacturerFilters
 logger = logging.getLogger(__name__)
 
 class ManufacturerViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'default'
     queryset = Manufacturer.objects.all()
     serializer_class = ManufacturerSerializer
     permission_classes = [InventoryPermission]

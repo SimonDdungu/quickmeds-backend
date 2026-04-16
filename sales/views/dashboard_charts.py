@@ -10,6 +10,7 @@ from sales.models.sale_item import SaleItem
 from rest_framework.permissions import IsAuthenticated
 
 class SalesTrendView(APIView):
+    throttle_scope = 'default'
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
