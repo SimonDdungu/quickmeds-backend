@@ -30,7 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
         try:
             group = Group.objects.get(name=role)
         except Group.DoesNotExist:
-            raise serializers.ValidationError("Role does not exist")
+            raise serializers.ValidationError({"detail": "Role does not exist"})
         
         
         user = User(**validated_data)
