@@ -35,6 +35,7 @@ class MedicineSerializer(serializers.ModelSerializer):
     
 class MedicineSummarySerializer(serializers.ModelSerializer):
     current_price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    manufacturer_detail = ManufacturerSerializer(source="manufacturer", read_only=True)
     class Meta:
         model = Medicine
         exclude = ['created_at', 'updated_at', 'manufacturer', ]
