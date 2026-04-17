@@ -55,7 +55,7 @@ class UserSerializer(serializers.ModelSerializer):
                 )
                 
         # Admin can not downgrade there own role.        
-        if instance == user and role != "Admin":
+        if instance == user and role == "Admin":
             raise serializers.ValidationError({"detail": "Admins cannot remove their own admin role"})
 
         if role:
