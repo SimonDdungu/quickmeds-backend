@@ -47,16 +47,18 @@ class UserSerializer(serializers.ModelSerializer):
        
         role = validated_data.pop('role', None)
         
+        allowed_groups = ["Admin"]
+        
         if role == "Admin":
-            allowed_groups = ["Admin"]
             if not user or not user.groups.filter(name__in=allowed_groups).exists():
                 raise serializers.ValidationError(
                     {"detail": f"You are not allowed to assign {role} role"}
                 )
                 
-        # Admin can not downgrade there own role.        
-        if instance == user and role == "Admin":
-            raise serializers.ValidationError({"detail": "Admins cannot remove their own admin role"})
+            # Admin can not downgrade there own role.        
+            if instance == user and user.groups.filter(name__in=allowed_groups).exists() and role:
+                if role != "Admin":
+                    raise serializers.ValidationError({"detail": "Admins cannot remove their own admin role"})
 
         if role:
             group = Group.objects.get(name=role)
