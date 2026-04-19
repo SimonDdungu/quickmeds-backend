@@ -12,7 +12,19 @@ QuickMeds is a pharmacy management web application for tracking inventory, sales
 - Django (Python)
 - PostgreSQL
 
+## Frontend
+[Quick Meds Frontend](https://github.com/SimonDdungu/quickmeds-frontend)
+
+## Login Details
+- Cashier
+Username: grace_dest      
+Password: grace12345
+
+- Technician
+Username: brain_mu
+Password brianbrian
+
 ## License
 Distributed under the MIT License.
 
-This Project is developed by [Simon Ddungu](www.linkedin.com/in/simon-ddungu/) and is still in Early Development.
+This Project is developed by [Simon Ddungu](www.linkedin.com/in/simon-ddungu/).
