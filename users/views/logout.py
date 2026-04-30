@@ -7,7 +7,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 
 class LogoutView(APIView):
-    throttle_scope = 'login'
     permission_classes = [AllowAny]
     authentication_classes = [] 
 
