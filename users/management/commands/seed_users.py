@@ -19,9 +19,12 @@ class Command(BaseCommand):
             password = data.pop("password")
             
             obj, was_created = User.objects.get_or_create(
-                username = data["username"],
+                id=data["id"],
                 defaults=data
             )
+            
+            if not was_created:
+                continue
             
             obj.is_staff = True
             obj.set_password(password)
@@ -36,9 +39,12 @@ class Command(BaseCommand):
             password = data.pop("password")
             
             obj, was_created = User.objects.get_or_create(
-                username = data["username"],
+                id=data["id"],
                 defaults=data
             )
+            
+            if not was_created:
+                continue
             
             obj.is_staff = True
             obj.set_password(password)

@@ -10,10 +10,12 @@ class Command(BaseCommand):
         
         for data in WHOLESALER:
             obj, was_created = Wholesaler.objects.get_or_create(
-                name = data["name"],
-                country = data["country"],
+                id=data["id"],
                 defaults = data
             )
+            
+            if not was_created:
+                continue
             
             if was_created:
                 created += 1

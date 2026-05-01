@@ -10,9 +10,12 @@ class Command(BaseCommand):
         
         for data in MANUFACTURERS:
             obj, was_created = Manufacturer.objects.get_or_create(
-                name = data["name"],
+                id=data["id"],
                 defaults=data
             )
+            
+            if not was_created:
+                continue
             
             if was_created:
                 created += 1

@@ -25,11 +25,12 @@ class Command(BaseCommand):
                 
             
             obj, was_created = Batch.objects.get_or_create(
-                medicine = data["medicine"],
-                wholesaler = data["wholesaler"],
-                batch_number = data["batch_number"],
+                id=data["id"],
                 defaults=data
             )
+            
+            if not was_created:
+                continue
             
             if was_created:
                 created += 1

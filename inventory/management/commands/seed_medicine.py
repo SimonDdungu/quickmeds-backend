@@ -20,12 +20,12 @@ class Command(BaseCommand):
                 continue
             
             obj, was_created = Medicine.objects.get_or_create(
-                name=data["name"],
-                generic_name=data["generic_name"],
-                strength=data["strength"],
-                strength_unit=data["strength_unit"],
+                id=data["id"],
                 defaults=data 
             )
+            
+            if not was_created:
+                continue
             
             if was_created:
                 created += 1
