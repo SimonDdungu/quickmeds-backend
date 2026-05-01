@@ -51,7 +51,7 @@ CASHIERS = [
     },
     {
         "id": "aabbccdd-eeff-0011-2233-445566778899",
-        "username": "grace_a",
+        "username": "grace_dest",
         "first_name": "Grace",
         "last_name": "Atim",
         "email": "atim.grace2@gmail.com",
