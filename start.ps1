@@ -12,7 +12,7 @@ Write-Host "Activating virtual environment..."
 .\venv\Scripts\Activate.ps1
 Write-Host ""
 
-Write-Host "⬆ Upgrading pip..."
+Write-Host "Upgrading pip..."
 python -m pip install --upgrade pip
 Write-Host ""
 
