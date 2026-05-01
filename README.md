@@ -24,6 +24,34 @@ Password: grace12345
 Username: brain_mu  
 Password brianbrian
 
+
+## Cloning Project
+### Pre-requisite
+- Python installed and Configured
+- PostgreSQL installed and Configured
+
+
+### Instructions
+
+#### Clone the repository
+```bash
+git clone https://github.com/SimonDdungu/quickmeds-backend.git
+
+cd quickmeds-backend/
+```
+
+#### Linux
+Run: 
+```bash
+./start.sh
+```
+#### Windows
+Run: 
+```powershell
+.\start.ps1
+```
+Make sure to update .env file with your credentials.
+
 ## License
 Distributed under the MIT License.
 
